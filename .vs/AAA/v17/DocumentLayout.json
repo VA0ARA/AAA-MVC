@@ -1,0 +1,105 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\VA.ara\\source\\repos\\AAA\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{0BCA23FB-09C3-4E38-A93F-0A5BD05F2C2F}|AAA\\AAA.csproj|c:\\users\\va.ara\\source\\repos\\aaa\\aaa\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{0BCA23FB-09C3-4E38-A93F-0A5BD05F2C2F}|AAA\\AAA.csproj|solutionrelative:aaa\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0BCA23FB-09C3-4E38-A93F-0A5BD05F2C2F}|AAA\\AAA.csproj|c:\\users\\va.ara\\source\\repos\\aaa\\aaa\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0BCA23FB-09C3-4E38-A93F-0A5BD05F2C2F}|AAA\\AAA.csproj|solutionrelative:aaa\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0BCA23FB-09C3-4E38-A93F-0A5BD05F2C2F}|AAA\\AAA.csproj|c:\\users\\va.ara\\source\\repos\\aaa\\aaa\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0BCA23FB-09C3-4E38-A93F-0A5BD05F2C2F}|AAA\\AAA.csproj|solutionrelative:aaa\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0BCA23FB-09C3-4E38-A93F-0A5BD05F2C2F}|AAA\\AAA.csproj|c:\\users\\va.ara\\source\\repos\\aaa\\aaa\\dtos\\registerdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0BCA23FB-09C3-4E38-A93F-0A5BD05F2C2F}|AAA\\AAA.csproj|solutionrelative:aaa\\dtos\\registerdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0BCA23FB-09C3-4E38-A93F-0A5BD05F2C2F}|AAA\\AAA.csproj|c:\\users\\va.ara\\source\\repos\\aaa\\aaa\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0BCA23FB-09C3-4E38-A93F-0A5BD05F2C2F}|AAA\\AAA.csproj|solutionrelative:aaa\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "C:\\Users\\VA.ara\\source\\repos\\AAA\\AAA\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "AAA\\Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "C:\\Users\\VA.ara\\source\\repos\\AAA\\AAA\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "AAA\\Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABkAAABzAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-08-16T14:55:38.143Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "HomeController.cs",
+              "DocumentMoniker": "C:\\Users\\VA.ara\\source\\repos\\AAA\\AAA\\Controllers\\HomeController.cs",
+              "RelativeDocumentMoniker": "AAA\\Controllers\\HomeController.cs",
+              "ToolTip": "C:\\Users\\VA.ara\\source\\repos\\AAA\\AAA\\Controllers\\HomeController.cs",
+              "RelativeToolTip": "AAA\\Controllers\\HomeController.cs",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-16T14:55:16.678Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "RegisterDTO.cs",
+              "DocumentMoniker": "C:\\Users\\VA.ara\\source\\repos\\AAA\\AAA\\Dtos\\RegisterDTO.cs",
+              "RelativeDocumentMoniker": "AAA\\Dtos\\RegisterDTO.cs",
+              "ToolTip": "C:\\Users\\VA.ara\\source\\repos\\AAA\\AAA\\Dtos\\RegisterDTO.cs",
+              "RelativeToolTip": "AAA\\Dtos\\RegisterDTO.cs",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAAAAAAAAGAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-16T14:50:50.843Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "AccountController.cs",
+              "DocumentMoniker": "C:\\Users\\VA.ara\\source\\repos\\AAA\\AAA\\Controllers\\AccountController.cs",
+              "RelativeDocumentMoniker": "AAA\\Controllers\\AccountController.cs",
+              "ToolTip": "C:\\Users\\VA.ara\\source\\repos\\AAA\\AAA\\Controllers\\AccountController.cs",
+              "RelativeToolTip": "AAA\\Controllers\\AccountController.cs",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAAA8AAAAdAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-16T14:12:51.479Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ApplicationDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\VA.ara\\source\\repos\\AAA\\AAA\\Data\\ApplicationDbContext.cs",
+              "RelativeDocumentMoniker": "AAA\\Data\\ApplicationDbContext.cs",
+              "ToolTip": "C:\\Users\\VA.ara\\source\\repos\\AAA\\AAA\\Data\\ApplicationDbContext.cs",
+              "RelativeToolTip": "AAA\\Data\\ApplicationDbContext.cs",
+              "ViewState": "AQIAAA8AAAAAAAAAAAAowAkAAABgAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-16T13:47:43.312Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
