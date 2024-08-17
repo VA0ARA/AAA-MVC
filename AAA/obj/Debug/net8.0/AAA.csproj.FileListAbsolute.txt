@@ -76,3 +76,4 @@ C:\Users\VA.ara\source\repos\AAA\AAA\obj\Debug\net8.0\refint\AAA.dll
 C:\Users\VA.ara\source\repos\AAA\AAA\obj\Debug\net8.0\AAA.pdb
 C:\Users\VA.ara\source\repos\AAA\AAA\obj\Debug\net8.0\AAA.genruntimeconfig.cache
 C:\Users\VA.ara\source\repos\AAA\AAA\obj\Debug\net8.0\ref\AAA.dll
+C:\Users\VA.ara\source\repos\AAA\AAA\obj\Debug\net8.0\AAA.sourcelink.json

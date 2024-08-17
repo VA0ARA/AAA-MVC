@@ -35,11 +35,9 @@ namespace AAA
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
-            app.UseRouting();
-
-            app.UseAuthorization();
-
+            app.UseAuthentication(); //Reading Identity cookie
+            app.UseRouting(); //Identifying action method based on route
+            //app.MapControllers(); //Execute the filter pipiline (action + filters)
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");

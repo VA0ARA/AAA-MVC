@@ -8,9 +8,11 @@ namespace AAA.Controllers
     public class AccountController : Controller
     {
         private readonly UserManager<ApplicationUser> _userManager;
-        public AccountController(UserManager<ApplicationUser> userManager)
+        private readonly SignInManager<ApplicationUser> _signInManager;
+        public AccountController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager)
         {
             _userManager = userManager;
+            _signInManager = signInManager;
         }
         [HttpGet]
         public IActionResult Register()
@@ -21,6 +23,7 @@ namespace AAA.Controllers
         [HttpPost]
         public async Task<IActionResult> Register(RegisterDTO registerDTO)
         {
+            #region 1.Create user
             //Check for validation errors
             if (ModelState.IsValid == false)
             {
@@ -31,9 +34,15 @@ namespace AAA.Controllers
             ApplicationUser user = new ApplicationUser() { Email = registerDTO.Email, PhoneNumber = registerDTO.Phone, UserName = registerDTO.Email, PersonName = registerDTO.PersonName };
 
             IdentityResult result = await _userManager.CreateAsync(user, registerDTO.Password);
+            #endregion
+            #region 2.Create coocke for register client in program cs>>send cooke to server
             if (result.Succeeded)
             {
-                return RedirectToAction(nameof(HomeController.Index), "Persons");
+                //Sign in create coockes send to client and save to browser
+                await _signInManager.SignInAsync(user, isPersistent: false);
+                #endregion
+                //return RedirectToAction(nameof(HomeController.Index));
+                return View();
             }
             else
             {
