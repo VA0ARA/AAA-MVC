@@ -1,9 +1,11 @@
 using AAA.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
 namespace AAA.Controllers
 {
+   // [AllowAnonymous]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -12,17 +14,20 @@ namespace AAA.Controllers
         {
             _logger = logger;
         }
-
         public IActionResult Index()
         {
             return View();
         }
-
+        [Authorize(Roles = "User")]
         public IActionResult Privacy()
         {
             return View();
         }
-
+        [Authorize(Roles = "Admin")]
+        public IActionResult PrivacyTwo()
+        {
+            return View();
+        }
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

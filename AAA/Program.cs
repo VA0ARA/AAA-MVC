@@ -3,6 +3,7 @@ using AAA.IdentityEntities;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 namespace AAA
 {
@@ -11,11 +12,9 @@ namespace AAA
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
-
-
             builder.Services.AddControllersWithViews();
+            #region config DATA base.
             builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaulConetion")));
-            #region Add services to the container.
             builder.Services.AddIdentity<ApplicationUser, ApplicationRole >(options =>
             {
                 options.Password.RequiredLength = 5;
@@ -30,9 +29,27 @@ namespace AAA
                 .AddUserStore<UserStore<ApplicationUser, ApplicationRole, ApplicationDbContext, Guid>>()
                 .AddRoleStore<RoleStore<ApplicationRole, ApplicationDbContext, Guid>>();
             #endregion
+            #region PolicyAuthorization
+            builder.Services.AddAuthorization(options =>
+            {
+                //policy >> Authenticated?
+                options.FallbackPolicy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build(); //enforces authoriation policy (user must be authenticated) for all the action method
+                 //new policy
+                /*                options.AddPolicy("NotAuthorized", policy =>
+                {
+                    policy.RequireAssertion(context =>
+                    {
+                        return !context.User.Identity.IsAuthenticated;
+                    });
+                });*/
+            });
+            builder.Services.ConfigureApplicationCookie(options =>
+            {
+                options.LoginPath = "/Account/Login";
+            });
+            #endregion
             var app = builder.Build();
-
-
+            #region PipleLine
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
             {
@@ -40,15 +57,17 @@ namespace AAA
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-            app.UseAuthentication(); //Reading Identity cookie
             app.UseRouting(); //Identifying action method based on route
-            //app.MapControllers(); //Execute the filter pipiline (action + filters)
+            app.UseAuthentication(); //Reading Identity cookie
+            app.UseAuthorization();//validate acces permission of user 
+          //app.MapControllers(); //Execute the filter pipiline (action + filters)
             app.MapControllerRoute(
-                name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}");
+                  name: "default",
+                   pattern: "{controller=Home}/{action=Index}/{id?}");
+            #endregion
+
 
             app.Run();
         }

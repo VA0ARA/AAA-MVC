@@ -1,29 +1,36 @@
 ﻿using AAA.Dtos;
 using AAA.IdentityEntities;
+using AAA.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AAA.Controllers
 {
+    [AllowAnonymous]
     public class AccountController : Controller
     {
+        #region prop
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
-        public AccountController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager)
+        private readonly RoleManager<ApplicationRole> _roleManager;
+        public AccountController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, RoleManager<ApplicationRole> roleManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _roleManager = roleManager;
         }
+        #endregion
         [HttpGet]
+        //[Authorize(Roles = "NotAuthorized")]
         public IActionResult Register()
         {
             return View();
         }
-
         [HttpPost]
+       // [Authorize(Roles = "NotAuthorized")]
         public async Task<IActionResult> Register(RegisterDTO registerDTO)
         {
-            #region 1.Create user
             //Check for validation errors
             if (ModelState.IsValid == false)
             {
@@ -34,14 +41,34 @@ namespace AAA.Controllers
             ApplicationUser user = new ApplicationUser() { Email = registerDTO.Email, PhoneNumber = registerDTO.Phone, UserName = registerDTO.Email, PersonName = registerDTO.PersonName };
 
             IdentityResult result = await _userManager.CreateAsync(user, registerDTO.Password);
-            #endregion
-            #region 2.Create coocke for register client in program cs>>send cooke to server
             if (result.Succeeded)
             {
-                //Sign in create coockes send to client and save to browser
+                //Check status of radio button
+                if (registerDTO.UserType == UserTypeOptions.Admin)
+                {
+                    //Create 'Admin' role
+                    if (await _roleManager.FindByNameAsync(UserTypeOptions.Admin.ToString()) is null)
+                    {
+                        ApplicationRole applicationRole = new ApplicationRole() { Name = UserTypeOptions.Admin.ToString() };
+                        await _roleManager.CreateAsync(applicationRole);
+                    }
+
+                    //Add the new user into 'Admin' role
+                    await _userManager.AddToRoleAsync(user, UserTypeOptions.Admin.ToString());
+                }
+                else
+                {
+                    //Create 'User' role
+                    if (await _roleManager.FindByNameAsync(UserTypeOptions.User.ToString()) is null)
+                    {
+                        ApplicationRole applicationRole = new ApplicationRole() { Name = UserTypeOptions.User.ToString() };
+                        await _roleManager.CreateAsync(applicationRole);
+                    }
+                    //Add the new user into 'User' role
+                    await _userManager.AddToRoleAsync(user, UserTypeOptions.User.ToString());
+                }
+                //Sign in
                 await _signInManager.SignInAsync(user, isPersistent: false);
-                #endregion
-                //return RedirectToAction(nameof(HomeController.Index));
                 return View();
             }
             else
@@ -55,5 +82,55 @@ namespace AAA.Controllers
             }
 
         }
+        [HttpGet]
+        //[Authorize(Roles = "NotAuthorized")]
+        public IActionResult Login()
+        {
+            return View();
+        }
+        [HttpPost]
+        //[Authorize(Roles = "NotAuthorized")]
+        public async Task<IActionResult> Login(LoginDTO loginDTO,string? ReturnUrl)
+        {
+            if (!ModelState.IsValid)
+            {
+                ViewBag.Errors = ModelState.Values.SelectMany(temp => temp.Errors).Select(temp => temp.ErrorMessage);
+                return View(loginDTO);
+            }
+
+            var result = await _signInManager.PasswordSignInAsync(loginDTO.Email, loginDTO.Password, isPersistent: false, lockoutOnFailure: false);
+
+            if (result.Succeeded)
+            {
+                if(!string.IsNullOrEmpty(ReturnUrl) && Url.IsLocalUrl(ReturnUrl))
+                {
+                    return LocalRedirect(ReturnUrl);
+                }
+                return RedirectToAction("Index", "Home");
+            }
+
+            ModelState.AddModelError("Login", "Inalid email or password");
+            return View(loginDTO);
+        }
+       // [Authorize]
+        public async Task<IActionResult> Logout()
+        {
+            await _signInManager.SignOutAsync();
+            return RedirectToAction("Index", "Home");
+        }
+        public async Task<IActionResult> IsEmailAlreadyRegistered(string email)
+        {
+            ApplicationUser user = await _userManager.FindByEmailAsync(email);
+            if (user == null)
+            {
+                return Json(true); //valid
+            }
+            else
+            {
+                return Json(false); //invalid
+            }
+        }
     }
+
 }
+
